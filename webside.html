@@ -22,10 +22,11 @@
             margin: 0;
             color: white; /* 文字颜色设置为白色，确保在背景上可见 */
         }
-        b{
-            font-size:20px;
-            margin:0;
-            color:red;
+
+        b {
+            font-size: 20px;
+            margin: 0;
+            color: red;
         }
 
         .custom-link {
@@ -58,33 +59,114 @@
             color: white; /* 文本颜色 */
             font-size: 20px; /* 文本大小 */
         }
+
+        /* 密码输入框样式 */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #password-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #password-box input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #password-box button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #password-box button:hover {
+            background-color: #0056b3;
+        }
+
+        #password-error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <p>你好,我是2b</p>
-    <b>私人专用,禁止外传</b>
-    <div class="button-container">
-        <!-- GitHub 按钮和文本 -->
-        <div class="button-with-text">
-            <a href="https://github.com" class="custom-link" target="_blank">GitHub</a>
-            <span class="button-text">op520, password-is-op114514</span>
-        </div>
-
-        <!-- DeepSeek 按钮 -->
-        <div class="button-with-text">
-            <a href="https://deepseek.com" class="custom-link" target="_blank">DeepSeek</a>
-        </div>
-
-        <!-- ChatGPT 按钮 -->
-        <div class="button-with-text">
-            <a href="https://chatgptchatapp.com" class="custom-link" target="_blank">ChatGPT</a>
-        </div>
-
-        <!-- 信息学奥赛按钮和文本 -->
-        <div class="button-with-text">
-            <a href="http://ybt.ssoier.cn:8088" class="custom-link" target="_blank">信息学奥赛</a>
-            <span class="button-text">tyfgtyqu788727gh, op114514</span>
+    <!-- 密码输入层 -->
+    <div id="password-overlay">
+        <div id="password-box">
+            <p>请输入密码访问</p>
+            <input type="password" id="password-input" placeholder="输入密码">
+            <button onclick="checkPassword()">提交</button>
+            <p id="password-error">密码错误，请重试！</p>
         </div>
     </div>
+
+    <!-- 页面内容 -->
+    <div id="content" style="display: none;">
+        <p>你好,我是2b</p>
+        <b>私人专用,禁止外传</b>
+        <div class="button-container">
+            <!-- GitHub 按钮和文本 -->
+            <div class="button-with-text">
+                <a href="https://github.com" class="custom-link" target="_blank">GitHub</a>
+                <span class="button-text">op520, password-is-op114514</span>
+            </div>
+
+            <!-- DeepSeek 按钮 -->
+            <div class="button-with-text">
+                <a href="https://deepseek.com" class="custom-link" target="_blank">DeepSeek</a>
+            </div>
+
+            <!-- ChatGPT 按钮 -->
+            <div class="button-with-text">
+                <a href="https://chatgptchatapp.com" class="custom-link" target="_blank">ChatGPT</a>
+            </div>
+
+            <!-- 信息学奥赛按钮和文本 -->
+            <div class="button-with-text">
+                <a href="http://ybt.ssoier.cn:8088" class="custom-link" target="_blank">信息学奥赛</a>
+                <span class="button-text">tyfgtyqu788727gh, op114514</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 密码验证函数
+        function checkPassword() {
+            const password = document.getElementById("password-input").value;
+            const correctPassword = "op114514"; // 正确密码
+            const errorMessage = document.getElementById("password-error");
+
+            if (password === correctPassword) {
+                // 密码正确，隐藏密码输入层，显示内容
+                document.getElementById("password-overlay").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            } else {
+                // 密码错误，显示错误信息
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
